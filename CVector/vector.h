@@ -14,6 +14,7 @@ Vector* create_vector(int initial_size);
 int size(Vector* vector);
 
 // Returns the element in the i position.
+//Returns -1 in case of error
 int get(Vector* vector, int i);
 
 // Saves x into the i position.
