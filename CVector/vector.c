@@ -3,14 +3,16 @@
 double getLoad(Vector* vector);
 
 Vector* create_vector(int initial_size){
-	int max_size = 100;
+	int max_size = 100; //max_size = initial_size
 	if (initial_size > max_size) {
+		// Porque? saca este if
 		return NULL;
 	}
 	int *data = (int *) malloc(initial_size * sizeof(int));
-	Vector vector = {initial_size, max_size, data};
-	Vector *pointer = (Vector *) malloc(1 * sizeof(Vector));
-	pointer = &vector;
+	// Agrega un checkeo para ver si data es NULL, si lo es, devolve NULL. Malloc puede devolver NULL si es que no hay memoria disponible.
+	Vector vector = {initial_size, max_size, data}; // En donde se esta pidiendo esta memoria, que pasa cuando el metodo create_vector hace return?
+	Vector *pointer = (Vector *) malloc(1 * sizeof(Vector)); // El 1 es redundante, no se suele poner
+	pointer = &vector;  // Si pedis memoria para pointer, y despues la sobreescribis con la posicion de memoria de vector, el valor de pointer se pierde, y causa un leak de memoria, esa memoria que pediste en el malloc nunca va a poder ser utilizada.
 	return pointer;
 }
 
@@ -20,8 +22,8 @@ int size(Vector* vector) {
 
 int get(Vector* vector, int i){
 	int *data = (*vector).data;
-	if (i >= (*vector).size || i < 0) {
-		return -1;
+	if (i >= (*vector).size || i < 0) { // El checkeo deberia ser contra max_size, que es el tamano maximo del array.
+		return -1; // El return value when error se suele documentar en la firma del metodo en el .h
 	}
     return data[i];
 }
