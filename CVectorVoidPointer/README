@@ -1,0 +1,4 @@
+Implement a vector (growable array) in C that stores void* values.
+
+If load factor of the vector is greater than 90%, then resize it to twice the size.
+
