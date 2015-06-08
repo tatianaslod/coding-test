@@ -10,7 +10,7 @@ typedef struct {
 // Creates a vector of size initial_size.
 Vector* create_vector(int initial_size);
 
-// Returns the max size of the vector.
+// Returns the used size of the vector.
 int size(Vector* vector);
 
 // Returns the element in the i position.
